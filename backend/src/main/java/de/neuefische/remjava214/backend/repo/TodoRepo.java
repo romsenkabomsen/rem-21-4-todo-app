@@ -59,7 +59,7 @@ public class TodoRepo {
         if(!id.equals(todo.getId())) {
             throw new IllegalArgumentException();
         };
-        //todoList.set(id, tod getById(id).get() = todo;
+
         Collections.replaceAll(todoList, getById(id).get(), todo);
         return todo;
     };
