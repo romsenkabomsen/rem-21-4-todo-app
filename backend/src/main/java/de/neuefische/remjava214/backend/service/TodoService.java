@@ -26,6 +26,8 @@ public class TodoService {
 
     }
 
-    public void addTodo(Todo todo) {
+    public Todo addTodo(Todo todo) {
+        return todoRepo.addTodo(todo);
     }
+
 }
