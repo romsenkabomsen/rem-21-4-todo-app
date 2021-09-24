@@ -4,7 +4,10 @@ import de.neuefische.remjava214.backend.model.Todo;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.Integer.parseInt;
@@ -37,5 +40,36 @@ public class TodoRepo {
            maxId++;
 
         return String.valueOf(maxId);
+    }
+
+    public Optional<Todo> getById(String id){
+
+           return todoList.stream()
+                    .filter(todo -> todo.getId().equals(id))
+                   .findFirst()
+                   ;
+
+    }
+
+    public Todo updateTodo(String id, Todo todo) throws NullPointerException, IllegalArgumentException {
+        if(getById(id).isEmpty()) {
+            throw new NullPointerException();
+        };
+
+        if(!id.equals(todo.getId())) {
+            throw new IllegalArgumentException();
+        };
+        //todoList.set(id, tod getById(id).get() = todo;
+        Collections.replaceAll(todoList, getById(id).get(), todo);
+        return todo;
+    };
+
+    public void deleteTodo(String id) throws NullPointerException{
+        if(getById(id).isEmpty()) {
+            throw new NullPointerException();
+        }
+        Optional<Todo> todo = getById(id);
+        todoList.remove(todo.get());
+
     }
 }

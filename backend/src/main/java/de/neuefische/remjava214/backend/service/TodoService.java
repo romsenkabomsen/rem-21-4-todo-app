@@ -19,11 +19,11 @@ public class TodoService {
     }
 
     public void deleteTodo(String id) {
-
+        todoRepo.deleteTodo(id);
     }
 
-    public void updateTodo(String id, Todo todo) {
-
+    public Todo updateTodo(String id, Todo todo) {
+        return todoRepo.updateTodo(id, todo);
     }
 
     public Todo addTodo(Todo todo) {
