@@ -4,9 +4,7 @@ import lombok.Data;
 
 @Data
 public class Todo {
-    String id;
-    String description;
-    String status;
-
-
+    private String id;
+    private String description;
+    private String status;
 }

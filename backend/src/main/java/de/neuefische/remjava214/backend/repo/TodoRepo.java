@@ -11,8 +11,7 @@ import static java.lang.Integer.parseInt;
 
 @Repository
 public class TodoRepo {
-    List<Todo> todoList= new ArrayList<>();
-
+    private final List<Todo> todoList= new ArrayList<>();
 
     public List<Todo> getTodos() {
         return todoList;
@@ -29,8 +28,8 @@ public class TodoRepo {
         if(todoList.isEmpty()){ return "1";}
 
            int maxId = todoList.stream()
-                   .map((currentTodo)->currentTodo.getId())
-                   .mapToInt(id -> parseInt(id))
+                   .map(Todo::getId)
+                   .mapToInt(Integer::parseInt)
                    .max()
                    .getAsInt();
 
