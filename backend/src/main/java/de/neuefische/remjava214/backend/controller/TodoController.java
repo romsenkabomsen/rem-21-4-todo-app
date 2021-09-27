@@ -15,29 +15,29 @@ public class TodoController {
     private final TodoService todoService;
 
     @Autowired
-    public TodoController(TodoService todoService){
+    public TodoController(TodoService todoService) {
         this.todoService = todoService;
     }
 
     @GetMapping
-    public List<Todo> getTodos(){
+    public List<Todo> getTodos() {
         return todoService.getTodos();
     }
 
     @PostMapping
-    public Todo addTodo(@RequestBody Todo todo){
+    public Todo addTodo(@RequestBody Todo todo) {
         todoService.addTodo(todo);
         return todo;
     }
 
     @PutMapping("{id}")
-    public Todo updateTodo(@PathVariable String id, @RequestBody Todo todo){
+    public Todo updateTodo(@PathVariable String id, @RequestBody Todo todo) {
         todoService.updateTodo(id, todo);
         return todo;
     }
 
     @DeleteMapping("{id}")
-    public void deleteTodo(@PathVariable String id){
+    public void deleteTodo(@PathVariable String id) {
         todoService.deleteTodo(id);
     }
 }

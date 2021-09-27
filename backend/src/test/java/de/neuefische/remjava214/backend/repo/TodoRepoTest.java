@@ -51,7 +51,7 @@ class TodoRepoTest {
         // THEN
         Assertions.assertEquals(todo1, actualState);
         Assertions.assertNotEquals(todo2, actualState);
-        Assertions.assertEquals(List.of(todoToAdd),todoRepo.getTodos());
+        Assertions.assertEquals(List.of(todoToAdd), todoRepo.getTodos());
     }
 
     @Test
@@ -107,12 +107,11 @@ class TodoRepoTest {
         Optional<Todo> result = todoRepo.getById("1");
         Todo gotUpdate;
 
-        if(result.isPresent()) {
+        if (result.isPresent()) {
             gotUpdate = result.get();
             Assertions.assertEquals(updateTodo, gotUpdate);
             Assertions.assertEquals(updateTodo, actual);
-        }
-        else fail();
+        } else fail();
 
     }
 
