@@ -1,4 +1,4 @@
-import Todo from "./Todo"
+import Todo from "../Todo/Todo"
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
-import TodoList from "./TodoList";
+import TodoList from "../TodoList/TodoList";
 
 function ScrollTop(props) {
     const { children, window } = props;
@@ -43,7 +43,7 @@ function ScrollTop(props) {
             <Box
                 onClick={handleClick}
                 role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                sx={{  position: 'fixed', bottom: 16, right: 16 }}
             >
                 {children}
             </Box>
@@ -60,6 +60,7 @@ ScrollTop.propTypes = {
     window: PropTypes.func,
 };
 
+
 export default function BackToTop(props) {
     return (
         <React.Fragment>
@@ -72,7 +73,7 @@ export default function BackToTop(props) {
                 </Toolbar>
             </AppBar>
             <Toolbar id="back-to-top-anchor" />
-            <Container>
+            <Container maxWidth={false}>
                 <TodoList/>
             </Container>
             <ScrollTop {...props}>
