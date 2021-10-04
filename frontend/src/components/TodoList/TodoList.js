@@ -61,9 +61,9 @@ export default function TodoList() {
 
     const advanceTodo = (status) => {
         status === 'doing' ?
-            leftChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'doing'})) :
-            middleChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'done'}))
-        dispatch(getApiData())
+            leftChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'doing'}).then(()=>dispatch(getApiData()))) :
+            middleChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'done'}).then(()=>dispatch(getApiData())));
+        // dispatch(getApiData())
         // setMiddle(middle.concat(leftChecked));
         // setLeft(not(left, leftChecked));
         // setChecked(not(checked, leftChecked));
@@ -71,9 +71,9 @@ export default function TodoList() {
 
     const revertTodo = (status) => {
         status === 'doing' ?
-            middleChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'todo'})) :
-            rightChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'doing'}))
-        dispatch(getApiData())
+            middleChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'todo'}).then(()=>dispatch(getApiData()))) :
+            rightChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'doing'}).then(()=>dispatch(getApiData())));
+        // dispatch(getApiData())
 
         // setLeft(left.concat(middleChecked));
         // setMiddle(not(middle, middleChecked));
@@ -108,7 +108,7 @@ export default function TodoList() {
                                     }}
                                 />
                             </ListItemIcon>
-                            <Todo text={value.description}/>
+                            <Todo id={value.id} text={value.description}/>
                         </ListItem>
                     );
                 })}

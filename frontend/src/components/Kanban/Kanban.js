@@ -13,6 +13,11 @@ import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
 import TodoList from "../TodoList/TodoList";
+import {IconButton} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import NewTodo from '../NewTodo/NewTodo'
+import {useRef} from "react";
+
 
 function ScrollTop(props) {
     const { children, window } = props;
@@ -62,10 +67,13 @@ ScrollTop.propTypes = {
 
 
 export default function BackToTop(props) {
+
+    const newTodoRef = useRef();
+    const anchorRef = useRef(null);
     return (
         <React.Fragment>
             <CssBaseline />
-            <AppBar>
+            <AppBar ref={anchorRef}>
                 <Toolbar>
                     <Typography variant="h6" component="div">
                         Scroll to see button
@@ -76,6 +84,10 @@ export default function BackToTop(props) {
             <Container maxWidth={false}>
                 <TodoList/>
             </Container>
+            <IconButton color="primary" onClick={()=>{newTodoRef.current.handleClick(anchorRef)}}>
+                <AddIcon />
+            </IconButton>
+            <NewTodo ref={newTodoRef} />
             <ScrollTop {...props}>
                 <Fab color="secondary" size="small" aria-label="scroll back to top">
                     <KeyboardArrowUpIcon />

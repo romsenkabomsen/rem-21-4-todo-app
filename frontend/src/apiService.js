@@ -19,5 +19,5 @@ export const updateTodo = (id, todo) => {
 }
 
 export const deleteTodo = (id) => {
-    return axios.delete("http://localhost:8080/api/todo", id)
+    return axios.delete(`http://localhost:8080/api/todo/${id}`)
 }
