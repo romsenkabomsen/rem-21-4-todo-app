@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from "react";
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -26,11 +26,6 @@ export default function Todo({title, text, status}) {
                     {text}
                 </Typography>
             </CardContent>
-            <CardActions>
-                <Button size="small">Delete</Button>
-                <Button size="small">Revert</Button>
-                <Button size="small">Advance</Button>
-            </CardActions>
         </Card>
     );
 }
