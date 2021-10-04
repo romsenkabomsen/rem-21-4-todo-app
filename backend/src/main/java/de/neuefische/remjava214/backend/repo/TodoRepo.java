@@ -66,11 +66,11 @@ public class TodoRepo {
     }
 
     public void deleteTodo(String id) throws NullPointerException {
-        if (getById(id).isEmpty()) {
+        Optional<Todo> todo = getById(id);
+        if (todo.isEmpty()) {
             throw new IllegalArgumentException("Can't delete todo with id " + id
                     + ". Because id is not found in the database");
         } else {
-            Optional<Todo> todo = getById(id);
             todoList.remove(todo.get());
         }
     }
