@@ -1,5 +1,3 @@
-import Todo from "./Todo"
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
@@ -12,15 +10,17 @@ import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Zoom from '@mui/material/Zoom';
-import TodoList from "./TodoList";
+import TodoList from "../TodoList/TodoList";
+import {IconButton} from "@mui/material";
+import AddIcon from '@mui/icons-material/Add';
+import NewTodo from '../NewTodo/NewTodo'
+import {useRef} from "react";
+import Kanban from "../Kanban/Kanban";
+
 
 function ScrollTop(props) {
-    const { children, window } = props;
-    // Note that you normally won't need to set the window ref as useScrollTrigger
-    // will default to window.
-    // This is only being set here because the demo is in an iframe.
+    const {children} = props;
     const trigger = useScrollTrigger({
-        target: window ? window() : undefined,
         disableHysteresis: true,
         threshold: 100,
     });
@@ -43,7 +43,7 @@ function ScrollTop(props) {
             <Box
                 onClick={handleClick}
                 role="presentation"
-                sx={{ position: 'fixed', bottom: 16, right: 16 }}
+                sx={{position: 'fixed', bottom: 16, right: 16}}
             >
                 {children}
             </Box>
@@ -53,31 +53,27 @@ function ScrollTop(props) {
 
 ScrollTop.propTypes = {
     children: PropTypes.element.isRequired,
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
-    window: PropTypes.func,
+
 };
 
+
 export default function BackToTop(props) {
+
     return (
         <React.Fragment>
-            <CssBaseline />
-            <AppBar>
+            <CssBaseline/>
+            <AppBar >
                 <Toolbar>
                     <Typography variant="h6" component="div">
                         Scroll to see button
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Toolbar id="back-to-top-anchor" />
-            <Container>
-                <TodoList/>
-            </Container>
+            <Toolbar id="back-to-top-anchor"/>
+            <Kanban/>
             <ScrollTop {...props}>
                 <Fab color="secondary" size="small" aria-label="scroll back to top">
-                    <KeyboardArrowUpIcon />
+                    <KeyboardArrowUpIcon/>
                 </Fab>
             </ScrollTop>
         </React.Fragment>

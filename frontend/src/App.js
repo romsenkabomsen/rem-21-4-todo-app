@@ -1,6 +1,6 @@
-import Kanban from "./components/Kanban"
-
+import Kanban from "./components/MenuScrollToTopContainer/MenuScrollToTopContainer"
 export default function App() {
+
   return (
     <div className="App">
       <header className="App-header">
