@@ -1,11 +1,5 @@
-import Kanban from "./components/Kanban/Kanban"
-
-
+import Kanban from "./components/MenuScrollToTopContainer/MenuScrollToTopContainer"
 export default function App() {
-
-
-
-
 
   return (
     <div className="App">

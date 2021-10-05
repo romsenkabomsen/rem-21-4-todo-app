@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { configureStore,  } from '@reduxjs/toolkit';
 import todoListReducer from '../components/TodoList/TodoListSlicer'
 
 
