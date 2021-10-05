@@ -2,11 +2,9 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
-import Todo from "../Todo/Todo";
+import TodoListItem from './TodoListItem/TodoListItem'
 
 import {useAppDispatch, useAppSelector} from '../../app/hooks';
 import {getApiData, selectGetAllTodos, selectGetAllDoing, selectGetAllDone} from './TodoListSlicer'
@@ -58,41 +56,18 @@ export default function TodoList() {
             rightChecked.forEach(todo => updateTodo(todo.id, {...todo, status:'doing'}).then(()=>dispatch(getApiData())));
     };
 
-    function createListItem(todo) {
+    const customList = (items) => {
+        const checkBoxChecked = (todo) => checked.indexOf(todo) !== -1
+        return (
 
-            const labelId = `transfer-list-item-${todo.id}-label`;
-
-            return (
-                <ListItem
-                    key={todo.id}
-                    role="listitem"
-                    button
-                    onClick={handleToggle(todo)}
-                >
-                    <ListItemIcon>
-                        <Checkbox
-                            checked={checked.indexOf(todo) !== -1}
-                            tabIndex={-1}
-                            disableRipple
-                            inputProps={{
-                                'aria-labelledby': labelId,
-                            }}
-                        />
-                    </ListItemIcon>
-                    <Todo id={todo.id} text={todo.description}/>
-                </ListItem>
-            );
-
+            <Paper sx={{ width: 400, height: 400,maxHeight:400, overflow: 'auto' }}>
+                <List dense component="div" role="list">
+                    {items.map((todo) => <TodoListItem todo={todo} handleToggle={handleToggle} checked={checkBoxChecked(todo)} key={todo.id}/>)}
+                    <ListItem />
+                </List>
+            </Paper>
+        );
     }
-
-    const customList = (items) => (
-        <Paper sx={{ width: 400, height: 400,maxHeight:400, overflow: 'auto' }}>
-            <List dense component="div" role="list">
-                {items.map(createListItem)}
-                <ListItem />
-            </List>
-        </Paper>
-    );
 
     return (
         <Grid container spacing={2} justifyContent="center" alignItems="center">

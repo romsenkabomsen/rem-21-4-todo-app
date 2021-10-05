@@ -12,7 +12,7 @@ function NewTodo(props, ref) {
     const [text, setText] = React.useState('');
     const dispatch = useAppDispatch();
     useImperativeHandle(ref, () =>({
-        handleClick:(f) =>{handleClick(f)}
+        handleClick: handleClick
         })
     )
 
@@ -29,6 +29,7 @@ function NewTodo(props, ref) {
         dispatch(getApiData());
         setAnchorEl(null)
         setText('')
+
     }
     const handleChange = (event) =>{
         setText(event.target.value)

@@ -15,10 +15,11 @@ import {IconButton} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import NewTodo from '../NewTodo/NewTodo'
 import {useRef} from "react";
+import Kanban from "../Kanban/Kanban";
 
 
 function ScrollTop(props) {
-    const { children } = props;
+    const {children} = props;
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 100,
@@ -42,7 +43,7 @@ function ScrollTop(props) {
             <Box
                 onClick={handleClick}
                 role="presentation"
-                sx={{  position: 'fixed', bottom: 16, right: 16 }}
+                sx={{position: 'fixed', bottom: 16, right: 16}}
             >
                 {children}
             </Box>
@@ -57,29 +58,22 @@ ScrollTop.propTypes = {
 
 
 export default function BackToTop(props) {
-    const anchorRef = useRef(null);
 
-
-    function handleNewTodo(){
-    newTodoRef.current.handleClick(anchorRef)
-    }
-
-    const newTodoRef = useRef();
     return (
         <React.Fragment>
-            <CssBaseline />
-            <AppBar ref={anchorRef}>
+            <CssBaseline/>
+            <AppBar >
                 <Toolbar>
                     <Typography variant="h6" component="div">
                         Scroll to see button
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Toolbar id="back-to-top-anchor" />
-
+            <Toolbar id="back-to-top-anchor"/>
+            <Kanban/>
             <ScrollTop {...props}>
                 <Fab color="secondary" size="small" aria-label="scroll back to top">
-                    <KeyboardArrowUpIcon />
+                    <KeyboardArrowUpIcon/>
                 </Fab>
             </ScrollTop>
         </React.Fragment>
